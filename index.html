@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>New Roots Cleaning Co.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green-dark:   #2c4a2e;
+      --green-mid:    #4a7c59;
+      --green-light:  #7aaa8a;
+      --green-pale:   #d6e8d8;
+      --cream:        #faf6ef;
+      --cream-dark:   #f0e9dc;
+      --text:         #2a2a2a;
+      --text-light:   #5a5a5a;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-eyebrow, .hero-title, .hero-subtitle, .hero-divider,
+    .hero-tagline, .hero-body, .hero-bold, .hero-inner .btn {
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards;
+    }
+    .hero-eyebrow          { animation-delay: 0.15s; }
+    .hero-title            { animation-delay: 0.35s; }
+    .hero-subtitle         { animation-delay: 0.55s; }
+    .hero-divider          { animation-delay: 0.65s; }
+    .hero-tagline          { animation-delay: 0.75s; }
+    .hero-body             { animation-delay: 0.88s; }
+    .hero-bold             { animation-delay: 0.98s; }
+    .hero-inner .btn       { animation-delay: 1.12s; }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--cream);
+      border-bottom: 1px solid var(--green-pale);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 40px;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--green-dark);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--green-dark);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--green-mid); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      background: var(--cream);
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 100px 24px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-leaf { position: absolute; opacity: 0.12; pointer-events: none; }
+    .hero-leaf.tl { top: 0; left: 0; width: 280px; }
+    .hero-leaf.tr { top: 0; right: 0; width: 220px; transform: scaleX(-1); }
+    .hero-leaf.bl { bottom: 0; left: 0; width: 200px; transform: scaleY(-1); }
+
+    .hero-inner { max-width: 680px; position: relative; z-index: 1; }
+    .hero-eyebrow {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--green-mid);
+      margin-bottom: 12px;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      color: var(--green-dark);
+      line-height: 1.0;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+    .hero-subtitle {
+      font-size: 0.8rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--green-mid);
+      margin: 16px 0 24px;
+      font-weight: 700;
+    }
+    .hero-divider {
+      width: 60px; height: 2px;
+      background: var(--green-light);
+      margin: 0 auto 24px;
+    }
+    .hero-tagline {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.4rem;
+      color: var(--green-dark);
+      margin-bottom: 14px;
+    }
+    .hero-body {
+      font-size: 1rem;
+      color: var(--text-light);
+      max-width: 500px;
+      margin: 0 auto 10px;
+    }
+    .hero-bold {
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 36px;
+    }
+    .btn {
+      display: inline-block;
+      background: var(--green-dark);
+      color: #fff;
+      text-decoration: none;
+      padding: 14px 36px;
+      border-radius: 2px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: background 0.2s, transform 0.15s;
+      border: none; cursor: pointer;
+    }
+    .btn:hover { background: var(--green-mid); transform: translateY(-1px); }
+
+    /* ── SECTION SHARED ── */
+    section { padding: 80px 24px; }
+    .section-inner { max-width: 1060px; margin: 0 auto; }
+    .section-label {
+      text-align: center;
+      font-size: 0.75rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--green-mid);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .section-title {
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      color: var(--green-dark);
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      text-align: center;
+      color: var(--text-light);
+      max-width: 560px;
+      margin: 0 auto 52px;
+      font-size: 0.97rem;
+    }
+
+    /* ── SERVICES ── */
+    #services { background: var(--cream-dark); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+    .service-card {
+      background: var(--cream);
+      border: 1.5px solid var(--green-pale);
+      border-radius: 4px;
+      padding: 36px 28px;
+      text-align: center;
+    }
+    .service-icon {
+      width: 52px; height: 52px;
+      background: var(--green-mid);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 18px;
+      font-size: 1.4rem;
+    }
+    .service-name {
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--green-dark);
+      margin-bottom: 8px;
+    }
+    .service-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--green-dark);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .service-tagline {
+      font-size: 0.88rem;
+      color: var(--text-light);
+      margin-bottom: 20px;
+    }
+    .service-divider {
+      width: 40px; height: 1px;
+      background: var(--green-light);
+      margin: 0 auto 20px;
+    }
+    .service-features { list-style: none; text-align: left; }
+    .service-features li {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      padding: 5px 0;
+      padding-left: 22px;
+      position: relative;
+    }
+    .service-features li::before {
+      content: '✓';
+      position: absolute; left: 0;
+      color: var(--green-mid);
+      font-weight: 700;
+    }
+
+    /* add-ons */
+    .addons-box {
+      background: var(--cream);
+      border: 1.5px solid var(--green-pale);
+      border-radius: 4px;
+      padding: 32px;
+    }
+    .addons-title {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--green-dark);
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .addons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 16px;
+      text-align: center;
+    }
+    .addon-item { }
+    .addon-emoji { font-size: 1.6rem; margin-bottom: 6px; }
+    .addon-name { font-size: 0.8rem; font-weight: 700; color: var(--green-dark); }
+    .addon-price { font-size: 0.85rem; color: var(--text-light); }
+    .addons-more {
+      text-align: center;
+      margin-top: 18px;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--green-mid);
+    }
+
+    /* ── VALUES ── */
+    #values { background: var(--green-dark); }
+    #values .section-title { color: #fff; }
+    #values .section-label { color: var(--green-light); }
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 32px;
+      text-align: center;
+    }
+    .value-item { }
+    .value-icon {
+      width: 48px; height: 48px;
+      border: 1.5px solid var(--green-light);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 14px;
+      font-size: 1.2rem;
+    }
+    .value-name {
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .value-desc { font-size: 0.88rem; color: var(--green-pale); }
+
+    /* ── PRODUCTS ── */
+    #products { background: var(--cream); }
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .product-card {
+      border: 1.5px solid var(--green-pale);
+      border-radius: 4px;
+      padding: 28px 24px;
+      text-align: center;
+    }
+    .product-icon { font-size: 2rem; margin-bottom: 10px; }
+    .product-name {
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--green-dark);
+      margin-bottom: 6px;
+    }
+    .product-desc { font-size: 0.88rem; color: var(--text-light); }
+
+    /* ── INQUIRY FORM ── */
+    #book { background: var(--cream-dark); }
+    .form-card {
+      background: var(--cream);
+      border: 1.5px solid var(--green-pale);
+      border-radius: 4px;
+      padding: 48px 40px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group.full { grid-column: 1 / -1; }
+    label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--green-dark);
+    }
+    input:not([type="checkbox"]), select, textarea {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.95rem;
+      padding: 11px 14px;
+      border: 1.5px solid var(--green-pale);
+      border-radius: 2px;
+      background: var(--cream);
+      color: var(--text);
+      transition: border-color 0.2s;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--green-mid);
+    }
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%234a7c59' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+    }
+    textarea { resize: vertical; min-height: 100px; }
+
+    .checkbox-group { display: flex; flex-direction: column; gap: 8px; }
+    .checkbox-item { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+    .checkbox-item input[type="checkbox"] {
+      width: 17px; height: 17px;
+      padding: 0;
+      accent-color: var(--green-dark);
+      cursor: pointer;
+    }
+    .checkbox-item span { font-size: 0.9rem; color: var(--text); }
+
+    .form-submit { margin-top: 28px; text-align: center; }
+    .btn-submit {
+      background: var(--green-dark);
+      color: #fff;
+      border: none;
+      padding: 15px 48px;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-submit:hover { background: var(--green-mid); transform: translateY(-1px); }
+    .btn-submit:disabled { background: var(--green-light); cursor: not-allowed; transform: none; }
+
+    .form-message {
+      margin-top: 18px;
+      padding: 14px 18px;
+      border-radius: 2px;
+      font-size: 0.92rem;
+      text-align: center;
+      display: none;
+    }
+    .form-message.success {
+      background: var(--green-pale);
+      color: var(--green-dark);
+      border: 1px solid var(--green-light);
+      display: block;
+    }
+    .form-message.error {
+      background: #fdecea;
+      color: #b00020;
+      border: 1px solid #f5c6cb;
+      display: block;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--green-dark);
+      color: var(--green-pale);
+      padding: 48px 24px;
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: #fff;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+    }
+    .footer-tagline {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--green-light);
+      margin-bottom: 28px;
+    }
+    .footer-contact {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 28px;
+      margin-bottom: 28px;
+    }
+    .footer-contact a {
+      color: var(--green-pale);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+    .footer-contact a:hover { color: #fff; }
+    .footer-social { display: flex; justify-content: center; gap: 24px; margin-bottom: 28px; }
+    .footer-social a {
+      color: var(--green-pale);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .footer-social a:hover { color: #fff; }
+    .footer-badges {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 16px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.12);
+    }
+    .footer-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green-light);
+    }
+    .footer-badge::before { content: '✦ '; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      nav { padding: 14px 20px; }
+      .nav-links { gap: 16px; }
+      .nav-links a { font-size: 0.75rem; }
+      .form-card { padding: 32px 20px; }
+      .form-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      .nav-links li:not(:last-child) { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">New Roots Cleaning Co.</div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#values">About</a></li>
+    <li><a href="#book">Book Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <!-- decorative leaf SVGs -->
+  <svg class="hero-leaf tl" viewBox="0 0 300 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M20 380 C20 200 180 20 280 10 C280 10 260 200 150 300 C90 350 20 380 20 380Z" fill="#2c4a2e"/>
+    <path d="M20 380 C80 300 200 200 280 10" stroke="#2c4a2e" stroke-width="2"/>
+    <path d="M20 380 C60 320 150 220 220 80" stroke="#2c4a2e" stroke-width="1.5"/>
+    <path d="M20 380 C50 340 120 260 180 140" stroke="#2c4a2e" stroke-width="1.2"/>
+  </svg>
+  <svg class="hero-leaf tr" viewBox="0 0 300 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M20 380 C20 200 180 20 280 10 C280 10 260 200 150 300 C90 350 20 380 20 380Z" fill="#2c4a2e"/>
+    <path d="M20 380 C80 300 200 200 280 10" stroke="#2c4a2e" stroke-width="2"/>
+  </svg>
+
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Two moms. One mission. ♡</p>
+    <h1 class="hero-title">New Roots<br>Cleaning Co.</h1>
+    <p class="hero-subtitle">Fresh Start &nbsp;·&nbsp; Real Clean &nbsp;·&nbsp; Done Right</p>
+    <div class="hero-divider"></div>
+    <p class="hero-tagline">We know exactly what needs done.</p>
+    <p class="hero-body">We're not just cleaners—we're moms who understand real-life mess, busy schedules, and the need for a true reset.</p>
+    <p class="hero-bold">No judgment. Just results. ♡</p>
+    <a href="#book" class="btn">Request a Quote</a>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-inner">
+    <p class="section-label">What We Offer</p>
+    <h2 class="section-title">Our Services</h2>
+    <p class="section-sub">Choose the clean that fits your home and your life.</p>
+
+    <div class="services-grid">
+      <!-- Standard -->
+      <div class="service-card reveal" data-delay="0">
+        <div class="service-icon">🏠</div>
+        <p class="service-name">Standard Cleaning</p>
+        <p class="service-price">$120 – $160</p>
+        <p class="service-tagline">Perfect for maintenance &amp; busy homes</p>
+        <div class="service-divider"></div>
+        <ul class="service-features">
+          <li>Kitchens + bathrooms</li>
+          <li>Dusting &amp; surfaces</li>
+          <li>Vacuum + mop</li>
+        </ul>
+      </div>
+      <!-- Deep -->
+      <div class="service-card reveal" data-delay="120">
+        <div class="service-icon">✨</div>
+        <p class="service-name">Deep Cleaning</p>
+        <p class="service-price">$220 – $360</p>
+        <p class="service-tagline">For when your space needs a full reset</p>
+        <div class="service-divider"></div>
+        <ul class="service-features">
+          <li>Baseboards, doors, details</li>
+          <li>Built-up grime removal</li>
+          <li>Top-to-bottom clean</li>
+        </ul>
+      </div>
+      <!-- Move -->
+      <div class="service-card reveal" data-delay="240">
+        <div class="service-icon">📦</div>
+        <p class="service-name">Move-In / Move-Out</p>
+        <p class="service-price">$275 – $425</p>
+        <p class="service-tagline">Fresh start, done right</p>
+        <div class="service-divider"></div>
+        <ul class="service-features">
+          <li>Empty home deep clean</li>
+          <li>Cabinets, appliances, closets</li>
+          <li>Ready for move-in or listing</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Add-ons -->
+    <div class="addons-box reveal" data-delay="0">
+      <p class="addons-title">Add-Ons ♡</p>
+      <div class="addons-grid">
+        <div class="addon-item">
+          <div class="addon-emoji">🧊</div>
+          <div class="addon-name">Inside Fridge</div>
+          <div class="addon-price">$25</div>
+        </div>
+        <div class="addon-item">
+          <div class="addon-emoji">🔥</div>
+          <div class="addon-name">Inside Oven</div>
+          <div class="addon-price">$25</div>
+        </div>
+        <div class="addon-item">
+          <div class="addon-emoji">🧺</div>
+          <div class="addon-name">Laundry + Folding</div>
+          <div class="addon-price">$20 / load</div>
+        </div>
+        <div class="addon-item">
+          <div class="addon-emoji">🗂️</div>
+          <div class="addon-name">Organization</div>
+          <div class="addon-price">$30 / hr</div>
+        </div>
+        <div class="addon-item">
+          <div class="addon-emoji">🪟</div>
+          <div class="addon-name">Interior Windows</div>
+          <div class="addon-price">$5 / window</div>
+        </div>
+      </div>
+      <p class="addons-more">+ More upon request! ♡</p>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section id="values">
+  <div class="section-inner">
+    <p class="section-label">Why New Roots</p>
+    <h2 class="section-title" style="color:#fff; margin-bottom: 48px;">Supporting Two Hardworking Moms &amp; Our Families</h2>
+    <div class="values-grid">
+      <div class="value-item reveal" data-delay="0">
+        <div class="value-icon">♡</div>
+        <p class="value-name">We Clean Like It's Our Own Home</p>
+        <p class="value-desc">Every detail matters to us, because it matters to you.</p>
+      </div>
+      <div class="value-item reveal" data-delay="120">
+        <div class="value-icon">🌿</div>
+        <p class="value-name">Judgment-Free, Always</p>
+        <p class="value-desc">Real life is messy. We get it — no judgment, just results.</p>
+      </div>
+      <div class="value-item reveal" data-delay="240">
+        <div class="value-icon">✦</div>
+        <p class="value-name">Reliable &amp; Detail-Obsessed</p>
+        <p class="value-desc">We show up, we do the work, and we do it right.</p>
+      </div>
+      <div class="value-item reveal" data-delay="360">
+        <div class="value-icon">📅</div>
+        <p class="value-name">Flexible for Real Life</p>
+        <p class="value-desc">We work around your schedule, not the other way around.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLEANING OPTIONS -->
+<section id="products">
+  <div class="section-inner">
+    <p class="section-label">Cleaning Options</p>
+    <h2 class="section-title">Choose What Fits Your Home</h2>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-icon">🧴</div>
+        <p class="product-name">Standard Products</p>
+        <p class="product-desc">Trusted, effective cleaning supplies that get the job done.</p>
+      </div>
+      <div class="product-card">
+        <div class="product-icon">🌱</div>
+        <p class="product-name">Organic / Low-Tox Options</p>
+        <p class="product-desc">Safer for kids, pets, and the environment — just ask!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INQUIRY FORM -->
+<section id="book">
+  <div class="section-inner">
+    <p class="section-label">Get In Touch</p>
+    <h2 class="section-title">Request a Quote</h2>
+    <p class="section-sub">Fill out the form and we'll be in touch within 24 hours with a custom quote.</p>
+
+    <div class="form-card reveal" data-delay="0">
+      <form id="inquiryForm">
+        <div class="form-grid">
+
+          <div class="form-group">
+            <label for="name">Full Name *</label>
+            <input type="text" id="name" name="name" required placeholder="Jane Smith" />
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone Number *</label>
+            <input type="tel" id="phone" name="phone" required placeholder="(630) 555-0100" />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" required placeholder="jane@example.com" />
+          </div>
+
+          <div class="form-group">
+            <label for="service">Service Type *</label>
+            <select id="service" name="service" required>
+              <option value="" disabled selected>Select a service…</option>
+              <option>Standard Cleaning</option>
+              <option>Deep Cleaning</option>
+              <option>Move-in / Move-out</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="bedrooms">Bedrooms</label>
+            <select id="bedrooms" name="bedrooms">
+              <option value="" disabled selected>Select…</option>
+              <option>Studio</option>
+              <option>1 bed</option>
+              <option>2 bed</option>
+              <option>3 bed</option>
+              <option>4 bed</option>
+              <option>5+ bed</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="products">Cleaning Products</label>
+            <select id="products-select" name="products">
+              <option value="" disabled selected>Select…</option>
+              <option>Standard Products</option>
+              <option>Organic / Low-tox</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="date">Preferred Date</label>
+            <input type="date" id="date" name="date" />
+          </div>
+
+          <div class="form-group">
+            <label for="time">Preferred Time</label>
+            <select id="time" name="time">
+              <option value="" disabled selected>Select…</option>
+              <option>Morning (8am–12pm)</option>
+              <option>Afternoon (12pm–4pm)</option>
+              <option>Flexible</option>
+            </select>
+          </div>
+
+          <div class="form-group full">
+            <label>Add-Ons (select all that apply)</label>
+            <div class="checkbox-group">
+              <label class="checkbox-item"><input type="checkbox" name="addons" value="Inside Fridge" /><span>Inside Fridge — $25</span></label>
+              <label class="checkbox-item"><input type="checkbox" name="addons" value="Inside Oven" /><span>Inside Oven — $25</span></label>
+              <label class="checkbox-item"><input type="checkbox" name="addons" value="Laundry + Folding" /><span>Laundry + Folding — $20/load</span></label>
+              <label class="checkbox-item"><input type="checkbox" name="addons" value="Organization" /><span>Organization — $30/hr</span></label>
+              <label class="checkbox-item"><input type="checkbox" name="addons" value="Interior Windows" /><span>Interior Windows — $5/window</span></label>
+            </div>
+          </div>
+
+          <div class="form-group full">
+            <label for="notes">Notes / Questions</label>
+            <textarea id="notes" name="notes" placeholder="Anything else we should know? Pets, special instructions, areas of concern…"></textarea>
+          </div>
+
+        </div>
+
+        <div class="form-submit">
+          <button type="submit" class="btn-submit" id="submitBtn">Send Request</button>
+        </div>
+
+        <div class="form-message" id="formMessage"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-logo">New Roots Cleaning Co.</p>
+  <p class="footer-tagline">Let's get your home feeling like a fresh start. ♡</p>
+  <div class="footer-contact">
+    <a href="tel:6307460781">📞 630-746-0781</a>
+    <a href="mailto:izzyhowe101@gmail.com">✉ izzyhowe101@gmail.com</a>
+  </div>
+  <div class="footer-social">
+    <a href="https://instagram.com/newroots.cleaningco" target="_blank" rel="noopener">Instagram @newroots.cleaningco</a>
+    <a href="https://facebook.com" target="_blank" rel="noopener">Facebook · New Roots Cleaning Co.</a>
+  </div>
+  <div class="footer-badges">
+    <span class="footer-badge">Free Quotes</span>
+    <span class="footer-badge">Reliable</span>
+    <span class="footer-badge">Detail-Oriented</span>
+    <span class="footer-badge">Trusted by Local Families</span>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        entry.target.style.transitionDelay = (entry.target.dataset.delay || 0) + 'ms';
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  const AIRTABLE_TOKEN = '%%AIRTABLE_TOKEN%%';
+  const AIRTABLE_BASE  = 'appwoPbE74KkHfOau';
+  const AIRTABLE_TABLE = 'tblrAj3tdvUJOlgXY';
+
+  document.getElementById('inquiryForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const btn = document.getElementById('submitBtn');
+    const msg = document.getElementById('formMessage');
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    msg.className = 'form-message';
+    msg.style.display = '';
+
+    // collect add-ons
+    const addons = Array.from(document.querySelectorAll('input[name="addons"]:checked'))
+                        .map(cb => cb.value);
+
+    const fields = {
+      'Name':              document.getElementById('name').value.trim(),
+      'Phone':             document.getElementById('phone').value.trim(),
+      'Email':             document.getElementById('email').value.trim(),
+      'Service Type':      document.getElementById('service').value,
+      'Bedrooms':          document.getElementById('bedrooms').value || '',
+      'Cleaning Products': document.getElementById('products-select').value || '',
+      'Preferred Date':    document.getElementById('date').value || '',
+      'Preferred Time':    document.getElementById('time').value || '',
+      'Add-ons':           addons,
+      'Notes':             document.getElementById('notes').value.trim(),
+      'Status':            'New',
+    };
+
+    // remove empty strings so Airtable doesn't complain
+    Object.keys(fields).forEach(k => { if (fields[k] === '') delete fields[k]; });
+
+    try {
+      const res = await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE}/${AIRTABLE_TABLE}`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${AIRTABLE_TOKEN}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ fields }),
+      });
+
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.error?.message || 'Submission failed');
+      }
+
+      msg.textContent = 'Request submitted! You should hear back from us shortly. ♡';
+      msg.className = 'form-message success';
+      btn.textContent = 'Submitted';
+      e.target.reset();
+    } catch (err) {
+      msg.textContent = `Something went wrong: ${err.message}. Please call or text us at 630-746-0781.`;
+      msg.className = 'form-message error';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Send Request';
+    }
+  });
+</script>
+
+</body>
+</html>
