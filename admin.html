@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin · New Roots Cleaning Co.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green-dark:  #2c4a2e;
+      --green-mid:   #4a7c59;
+      --green-light: #7aaa8a;
+      --green-pale:  #d6e8d8;
+      --cream:       #faf6ef;
+      --cream-dark:  #f0e9dc;
+      --text:        #2a2a2a;
+      --text-light:  #5a5a5a;
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--green-dark);
+      padding: 18px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .header-logo {
+      font-family: 'Playfair Display', serif;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+    .header-badge {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--green-light);
+      border: 1px solid var(--green-light);
+      padding: 4px 10px;
+      border-radius: 2px;
+    }
+
+    /* ── LOGIN SCREEN ── */
+    #login-screen {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 24px;
+    }
+    .login-card {
+      background: var(--cream);
+      border: 1.5px solid var(--green-pale);
+      border-radius: 4px;
+      padding: 48px 40px;
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+    .login-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--green-mid);
+      margin-bottom: 8px;
+    }
+    .login-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--green-dark);
+      margin-bottom: 32px;
+    }
+    .login-field { text-align: left; margin-bottom: 20px; }
+    .login-field label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--green-dark);
+      margin-bottom: 6px;
+    }
+    .login-field input {
+      width: 100%;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.95rem;
+      padding: 11px 14px;
+      border: 1.5px solid var(--green-pale);
+      border-radius: 2px;
+      background: var(--cream);
+      color: var(--text);
+      transition: border-color 0.2s;
+    }
+    .login-field input:focus {
+      outline: none;
+      border-color: var(--green-mid);
+    }
+    .login-error {
+      font-size: 0.85rem;
+      color: #b00020;
+      margin-bottom: 16px;
+      display: none;
+    }
+    .btn-login {
+      width: 100%;
+      background: var(--green-dark);
+      color: #fff;
+      border: none;
+      padding: 13px;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-login:hover { background: var(--green-mid); }
+
+    /* ── EDITOR SCREEN ── */
+    #editor-screen {
+      display: none;
+      flex: 1;
+      padding: 48px 24px;
+    }
+    .editor-inner { max-width: 680px; margin: 0 auto; }
+    .editor-intro {
+      margin-bottom: 40px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--green-pale);
+    }
+    .editor-intro h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: var(--green-dark);
+      margin-bottom: 6px;
+    }
+    .editor-intro p {
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+
+    .field-group {
+      margin-bottom: 36px;
+    }
+    .field-group-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--green-mid);
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--green-pale);
+    }
+    .field-row {
+      margin-bottom: 16px;
+    }
+    .field-row label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--green-dark);
+      margin-bottom: 6px;
+    }
+    .field-row input {
+      width: 100%;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.95rem;
+      padding: 11px 14px;
+      border: 1.5px solid var(--green-pale);
+      border-radius: 2px;
+      background: var(--cream);
+      color: var(--text);
+      transition: border-color 0.2s;
+    }
+    .field-row input:focus {
+      outline: none;
+      border-color: var(--green-mid);
+    }
+    .field-row input.changed {
+      border-color: var(--green-mid);
+      background: #f0f7f2;
+    }
+
+    .save-bar {
+      position: sticky;
+      bottom: 0;
+      background: var(--cream);
+      border-top: 1.5px solid var(--green-pale);
+      padding: 16px 0;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .btn-save {
+      background: var(--green-dark);
+      color: #fff;
+      border: none;
+      padding: 13px 40px;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-save:hover { background: var(--green-mid); }
+    .btn-save:disabled { background: var(--green-light); cursor: not-allowed; }
+    .save-message {
+      font-size: 0.88rem;
+      display: none;
+    }
+    .save-message.success { color: var(--green-mid); display: block; }
+    .save-message.error   { color: #b00020; display: block; }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 24px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--green-mid);
+      text-decoration: none;
+    }
+    .back-link:hover { color: var(--green-dark); }
+
+    @media (max-width: 640px) {
+      header { padding: 14px 20px; }
+      .login-card { padding: 32px 20px; }
+      #editor-screen { padding: 32px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <span class="header-logo">New Roots Cleaning Co.</span>
+  <span class="header-badge">Admin</span>
+</header>
+
+<!-- LOGIN -->
+<div id="login-screen">
+  <div class="login-card">
+    <p class="login-eyebrow">Site Management</p>
+    <h1 class="login-title">Welcome Back</h1>
+    <form id="loginForm">
+      <div class="login-field">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter your password" autocomplete="current-password" />
+      </div>
+      <p class="login-error" id="loginError">Incorrect password. Please try again.</p>
+      <button type="submit" class="btn-login">Sign In</button>
+    </form>
+  </div>
+</div>
+
+<!-- EDITOR -->
+<div id="editor-screen">
+  <div class="editor-inner">
+    <a href="index.html" class="back-link">← Back to site</a>
+    <div class="editor-intro">
+      <h1>Edit Your Site</h1>
+      <p>Changes save instantly to your live site. Fields highlighted in green have unsaved changes.</p>
+    </div>
+
+    <div id="fields-container">
+      <p style="color: var(--text-light); font-size: 0.9rem;">Loading your content…</p>
+    </div>
+
+    <div class="save-bar">
+      <button class="btn-save" id="saveBtn">Save Changes</button>
+      <span class="save-message" id="saveMessage"></span>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ── CONFIG ── replace %%AIRTABLE_TOKEN%% with env var on deploy
+  const TOKEN = '%%AIRTABLE_TOKEN%%';
+  const BASE  = 'appwoPbE74KkHfOau';
+  const TABLE = 'tbljULmT7z4PMGUNd';
+  const ADMIN_PASSWORD = 'bella04061999';
+
+  // Group order and labels for the editor UI
+  const GROUPS = {
+    'Service Prices': ['standard_price', 'deep_price', 'move_price'],
+    'Add-On Prices':  ['addon_fridge', 'addon_oven', 'addon_laundry', 'addon_organization', 'addon_windows'],
+    'Contact Info':   ['contact_name', 'contact_email'],
+    'Social Links':   ['instagram_url', 'facebook_url'],
+  };
+
+  // ── AUTH ──
+  if (sessionStorage.getItem('nr_admin') === 'true') showEditor();
+
+  document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const val = document.getElementById('password').value;
+    if (val === ADMIN_PASSWORD) {
+      sessionStorage.setItem('nr_admin', 'true');
+      showEditor();
+    } else {
+      document.getElementById('loginError').style.display = 'block';
+    }
+  });
+
+  function showEditor() {
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('editor-screen').style.display = 'flex';
+    fetchContent();
+  }
+
+  // ── FETCH & RENDER ──
+  let records = {};
+
+  async function fetchContent() {
+    try {
+      const res = await fetch(`https://api.airtable.com/v0/${BASE}/${TABLE}`, {
+        headers: { Authorization: `Bearer ${TOKEN}` }
+      });
+      const data = await res.json();
+
+      data.records.forEach(r => {
+        records[r.fields.Key] = { id: r.id, ...r.fields };
+      });
+
+      renderFields();
+    } catch(e) {
+      document.getElementById('fields-container').innerHTML =
+        '<p style="color:#b00020;">Unable to load content. Please check your connection.</p>';
+    }
+  }
+
+  function renderFields() {
+    const container = document.getElementById('fields-container');
+    container.innerHTML = '';
+
+    Object.entries(GROUPS).forEach(([groupName, keys]) => {
+      const groupDiv = document.createElement('div');
+      groupDiv.className = 'field-group';
+
+      const title = document.createElement('p');
+      title.className = 'field-group-title';
+      title.textContent = groupName;
+      groupDiv.appendChild(title);
+
+      keys.forEach(key => {
+        const rec = records[key];
+        if (!rec) return;
+
+        const row = document.createElement('div');
+        row.className = 'field-row';
+
+        const label = document.createElement('label');
+        label.textContent = rec.Label || key;
+        label.setAttribute('for', `field-${key}`);
+
+        const input = document.createElement('input');
+        input.type = rec.Select === 'email' ? 'email' : 'text';
+        input.id = `field-${key}`;
+        input.value = rec.Value || '';
+        input.dataset.key = key;
+        input.dataset.original = rec.Value || '';
+
+        input.addEventListener('input', function() {
+          this.classList.toggle('changed', this.value !== this.dataset.original);
+        });
+
+        row.appendChild(label);
+        row.appendChild(input);
+        groupDiv.appendChild(row);
+      });
+
+      container.appendChild(groupDiv);
+    });
+  }
+
+  // ── SAVE ──
+  document.getElementById('saveBtn').addEventListener('click', async function() {
+    const btn = document.getElementById('saveBtn');
+    const msg = document.getElementById('saveMessage');
+    btn.disabled = true;
+    btn.textContent = 'Saving…';
+    msg.className = 'save-message';
+
+    const inputs = document.querySelectorAll('.field-row input');
+    const updates = [];
+
+    inputs.forEach(input => {
+      const key = input.dataset.key;
+      const rec = records[key];
+      if (rec && input.value !== input.dataset.original) {
+        updates.push({ id: rec.id, fields: { Value: input.value } });
+      }
+    });
+
+    if (updates.length === 0) {
+      msg.textContent = 'No changes to save.';
+      msg.className = 'save-message success';
+      btn.disabled = false;
+      btn.textContent = 'Save Changes';
+      return;
+    }
+
+    try {
+      // Airtable allows max 10 records per PATCH — chunk if needed
+      const chunks = [];
+      for (let i = 0; i < updates.length; i += 10) chunks.push(updates.slice(i, i + 10));
+
+      for (const chunk of chunks) {
+        const res = await fetch(`https://api.airtable.com/v0/${BASE}/${TABLE}`, {
+          method: 'PATCH',
+          headers: {
+            Authorization: `Bearer ${TOKEN}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ records: chunk }),
+        });
+        if (!res.ok) {
+          const err = await res.json();
+          throw new Error(err.error?.message || 'Save failed');
+        }
+      }
+
+      // Update originals so changed highlight resets
+      inputs.forEach(input => {
+        input.dataset.original = input.value;
+        input.classList.remove('changed');
+      });
+
+      msg.textContent = '✓ Changes saved successfully.';
+      msg.className = 'save-message success';
+    } catch(e) {
+      msg.textContent = `Error: ${e.message}`;
+      msg.className = 'save-message error';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Save Changes';
+    }
+  });
+</script>
+
+</body>
+</html>
