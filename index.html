@@ -6,7 +6,7 @@
   <title>New Roots Cleaning Co.</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -24,7 +24,6 @@
     html { scroll-behavior: smooth; overflow-x: hidden; }
     body { overflow-x: hidden; }
 
-    /* ── ANIMATIONS ── */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(24px); }
       to   { opacity: 1; transform: translateY(0); }
@@ -49,10 +48,7 @@
       transform: translateY(28px);
       transition: opacity 0.65s ease, transform 0.65s ease;
     }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
 
     body {
       font-family: 'Lato', sans-serif;
@@ -61,6 +57,16 @@
       font-size: 16px;
       line-height: 1.6;
     }
+
+    /* ── LEAF DECORATIONS ── */
+    .leaf-deco {
+      position: absolute;
+      pointer-events: none;
+    }
+    .leaf-deco.pos-tl { top: 0; left: 0; }
+    .leaf-deco.pos-tr { top: 0; right: 0; transform-origin: right top; transform: scaleX(-1); }
+    .leaf-deco.pos-bl { bottom: 0; left: 0; transform-origin: left bottom; transform: scaleY(-1); }
+    .leaf-deco.pos-br { bottom: 0; right: 0; transform-origin: right bottom; transform: scale(-1,-1); }
 
     /* ── NAV ── */
     nav {
@@ -102,13 +108,11 @@
     .hero-leaf { position: absolute; opacity: 0.12; pointer-events: none; }
     .hero-leaf.tl { top: 0; left: 0; width: 280px; }
     .hero-leaf.tr { top: 0; right: 0; width: 220px; transform: scaleX(-1); }
-    .hero-leaf.bl { bottom: 0; left: 0; width: 200px; transform: scaleY(-1); }
 
     .hero-inner { max-width: 680px; position: relative; z-index: 1; }
     .hero-eyebrow {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: 1.1rem;
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.3rem;
       color: var(--green-mid);
       margin-bottom: 12px;
     }
@@ -134,9 +138,8 @@
       margin: 0 auto 24px;
     }
     .hero-tagline {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: 1.4rem;
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.6rem;
       color: var(--green-dark);
       margin-bottom: 14px;
     }
@@ -167,8 +170,8 @@
     }
     .btn:hover { background: var(--green-mid); transform: translateY(-1px); }
 
-    /* ── SECTION SHARED ── */
-    section { padding: 80px 24px; }
+    /* ── SHARED SECTION ── */
+    section { padding: 80px 24px; scroll-margin-top: 64px; }
     .section-inner { max-width: 1060px; margin: 0 auto; }
     .section-label {
       text-align: center;
@@ -194,9 +197,49 @@
       font-size: 0.97rem;
     }
 
-    /* ── STORY ── */
-    #story { background: var(--cream-dark); }
+    /* ── BRUSH HEADING ── */
+    .brush-heading-wrap {
+      margin-bottom: 28px;
+    }
+    .brush-heading {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      color: var(--green-dark);
+      display: inline-block;
+      position: relative;
+      padding: 6px 28px 6px 20px;
+      z-index: 1;
+    }
+    .brush-heading::before {
+      content: '';
+      position: absolute;
+      inset: -2px -6px;
+      background: var(--green-mid);
+      opacity: 0.22;
+      border-radius: 64% 36% 42% 58% / 43% 57% 43% 57%;
+      transform: rotate(-1.5deg);
+      z-index: -1;
+    }
+    .brush-heading.on-dark {
+      color: #fff;
+    }
+    .brush-heading.on-dark::before {
+      background: rgba(255,255,255,0.12);
+      opacity: 1;
+    }
+
+    /* ── MY STORY ── */
+    #story { background: var(--cream-dark); position: relative; overflow: hidden; }
     .story-layout { max-width: 680px; margin: 0 auto; }
+    .story-name {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--green-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 20px;
+    }
     .story-body {
       font-size: 1rem;
       color: var(--text-light);
@@ -204,9 +247,8 @@
       line-height: 1.75;
     }
     .story-callout {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: 1.15rem;
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(1.2rem, 3vw, 1.5rem);
       color: var(--green-dark);
       border-left: 3px solid var(--green-light);
       padding-left: 20px;
@@ -214,8 +256,86 @@
       line-height: 1.7;
     }
 
+    /* ── WHY I DO IT ── */
+    #why { background: var(--cream); }
+    .why-card {
+      background: var(--green-dark);
+      border-radius: 8px 20px 14px 18px / 16px 10px 20px 8px;
+      padding: 64px 56px;
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .why-card::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+      pointer-events: none;
+    }
+    .why-body {
+      font-size: 1rem;
+      color: var(--green-pale);
+      line-height: 1.8;
+      max-width: 500px;
+      margin: 0 auto 32px;
+    }
+    .why-thanks {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      color: #fff;
+      opacity: 0.9;
+    }
+
     /* ── SERVICES ── */
-    #services { background: var(--cream); }
+    #services { background: var(--cream-dark); position: relative; overflow: hidden; }
+
+    .price-badge-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 52px;
+    }
+    .price-badge {
+      width: 176px;
+      height: 176px;
+      background: var(--green-mid);
+      border-radius: 52% 48% 55% 45% / 50% 52% 48% 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      box-shadow: 0 6px 28px rgba(44,74,46,0.28);
+      padding: 16px;
+    }
+    .price-badge-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      opacity: 0.85;
+      margin-bottom: 2px;
+    }
+    .price-badge-amount {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .price-badge-unit {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      opacity: 0.85;
+    }
+
     .services-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -223,7 +343,7 @@
       margin-bottom: 40px;
     }
     .service-card {
-      background: var(--cream-dark);
+      background: var(--cream);
       border: 1.5px solid var(--green-pale);
       border-radius: 4px;
       padding: 36px 28px;
@@ -259,8 +379,7 @@
     .service-features li {
       font-size: 0.9rem;
       color: var(--text-light);
-      padding: 5px 0;
-      padding-left: 22px;
+      padding: 5px 0 5px 22px;
       position: relative;
     }
     .service-features li::before {
@@ -270,12 +389,21 @@
       font-weight: 700;
     }
 
+    .services-mantra {
+      text-align: center;
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.4rem;
+      color: var(--green-mid);
+      margin-top: 12px;
+      margin-bottom: 48px;
+    }
+
     /* add-ons */
     .addons-box {
-      background: var(--cream-dark);
+      background: var(--cream);
       border: 1.5px solid var(--green-pale);
       border-radius: 4px;
-      padding: 32px;
+      padding: 36px 32px;
     }
     .addons-title {
       font-size: 0.75rem;
@@ -284,24 +412,29 @@
       font-weight: 700;
       color: var(--green-dark);
       text-align: center;
-      margin-bottom: 24px;
+      margin-bottom: 28px;
     }
     .addons-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 20px;
       text-align: center;
     }
-    .addon-item { }
-    .addon-emoji { font-size: 1.6rem; margin-bottom: 6px; }
-    .addon-name { font-size: 0.8rem; font-weight: 700; color: var(--green-dark); }
-    .addon-price { font-size: 0.85rem; color: var(--text-light); }
+    .addon-icon {
+      width: 48px; height: 48px;
+      background: var(--green-dark);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 10px;
+    }
+    .addon-icon svg { width: 24px; height: 24px; }
+    .addon-name { font-size: 0.78rem; font-weight: 700; color: var(--green-dark); margin-bottom: 2px; }
+    .addon-price { font-size: 0.82rem; color: var(--text-light); }
     .addons-more {
       text-align: center;
-      margin-top: 18px;
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: 0.95rem;
+      margin-top: 24px;
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.2rem;
       color: var(--green-mid);
     }
 
@@ -315,7 +448,6 @@
       gap: 32px;
       text-align: center;
     }
-    .value-item { }
     .value-icon {
       width: 48px; height: 48px;
       border: 1.5px solid var(--green-light);
@@ -344,11 +476,7 @@
       max-width: 720px;
       margin: 0 auto;
     }
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
     .form-group { display: flex; flex-direction: column; gap: 6px; }
     .form-group.full { grid-column: 1 / -1; }
     label {
@@ -370,10 +498,7 @@
       appearance: none;
       -webkit-appearance: none;
     }
-    input:focus, select:focus, textarea:focus {
-      outline: none;
-      border-color: var(--green-mid);
-    }
+    input:focus, select:focus, textarea:focus { outline: none; border-color: var(--green-mid); }
     select {
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%234a7c59' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
@@ -381,115 +506,49 @@
       padding-right: 36px;
     }
     textarea { resize: vertical; min-height: 100px; }
-
     .checkbox-group { display: flex; flex-direction: column; gap: 8px; }
     .checkbox-item { display: flex; align-items: center; gap: 10px; cursor: pointer; }
     .checkbox-item input[type="checkbox"] {
-      width: 17px; height: 17px;
-      padding: 0;
-      accent-color: var(--green-dark);
-      cursor: pointer;
+      width: 17px; height: 17px; padding: 0;
+      accent-color: var(--green-dark); cursor: pointer;
     }
     .checkbox-item span { font-size: 0.9rem; color: var(--text); }
-
     .form-submit { margin-top: 28px; text-align: center; }
     .btn-submit {
-      background: var(--green-dark);
-      color: #fff;
-      border: none;
-      padding: 15px 48px;
-      font-family: 'Lato', sans-serif;
-      font-size: 0.82rem;
-      font-weight: 700;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      border-radius: 2px;
-      cursor: pointer;
+      background: var(--green-dark); color: #fff; border: none;
+      padding: 15px 48px; font-family: 'Lato', sans-serif;
+      font-size: 0.82rem; font-weight: 700; letter-spacing: 0.16em;
+      text-transform: uppercase; border-radius: 2px; cursor: pointer;
       transition: background 0.2s, transform 0.15s;
     }
     .btn-submit:hover { background: var(--green-mid); transform: translateY(-1px); }
     .btn-submit:disabled { background: var(--green-light); cursor: not-allowed; transform: none; }
-
     .form-message {
-      margin-top: 18px;
-      padding: 14px 18px;
-      border-radius: 2px;
-      font-size: 0.92rem;
-      text-align: center;
-      display: none;
+      margin-top: 18px; padding: 14px 18px; border-radius: 2px;
+      font-size: 0.92rem; text-align: center; display: none;
     }
-    .form-message.success {
-      background: var(--green-pale);
-      color: var(--green-dark);
-      border: 1px solid var(--green-light);
-      display: block;
-    }
-    .form-message.error {
-      background: #fdecea;
-      color: #b00020;
-      border: 1px solid #f5c6cb;
-      display: block;
-    }
+    .form-message.success { background: var(--green-pale); color: var(--green-dark); border: 1px solid var(--green-light); display: block; }
+    .form-message.error { background: #fdecea; color: #b00020; border: 1px solid #f5c6cb; display: block; }
 
     /* ── FOOTER ── */
-    footer {
-      background: var(--green-dark);
-      color: var(--green-pale);
-      padding: 48px 24px;
-      text-align: center;
-    }
-    .footer-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      color: #fff;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      margin-bottom: 6px;
-    }
-    .footer-tagline {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: 0.9rem;
-      color: var(--green-light);
-      margin-bottom: 28px;
-    }
+    footer { background: var(--green-dark); color: var(--green-pale); padding: 48px 24px; text-align: center; }
+    .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #fff; font-weight: 700; letter-spacing: 0.05em; margin-bottom: 6px; }
+    .footer-tagline { font-family: 'Dancing Script', cursive; font-size: 1.1rem; color: var(--green-light); margin-bottom: 28px; }
     .footer-social { display: flex; justify-content: center; gap: 20px; margin-bottom: 28px; }
     .footer-social a {
-      color: var(--green-pale);
-      text-decoration: none;
+      color: var(--green-pale); text-decoration: none;
       display: flex; align-items: center; justify-content: center;
       width: 40px; height: 40px;
-      border: 1.5px solid rgba(255,255,255,0.2);
-      border-radius: 50%;
+      border: 1.5px solid rgba(255,255,255,0.2); border-radius: 50%;
       transition: color 0.2s, border-color 0.2s, background 0.2s;
     }
     .footer-social a:hover { color: #fff; border-color: #fff; background: rgba(255,255,255,0.08); }
     .footer-social svg { width: 18px; height: 18px; fill: currentColor; }
-    .footer-copyright {
-      font-size: 0.7rem;
-      color: var(--green-light);
-      opacity: 0.6;
-      margin-top: 20px;
-      letter-spacing: 0.08em;
-    }
-    .footer-copyright a {
-      color: inherit;
-      text-decoration: none;
-      transition: opacity 0.2s;
-    }
+    .footer-copyright { font-size: 0.7rem; color: var(--green-light); opacity: 0.6; margin-top: 20px; letter-spacing: 0.08em; }
+    .footer-copyright a { color: inherit; text-decoration: none; transition: opacity 0.2s; }
     .footer-copyright a:hover { opacity: 1; }
-    .footer-badges {
-      display: flex; flex-wrap: wrap; justify-content: center; gap: 16px;
-      padding-top: 24px;
-      border-top: 1px solid rgba(255,255,255,0.12);
-    }
-    .footer-badge {
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--green-light);
-    }
+    .footer-badges { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.12); }
+    .footer-badge { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--green-light); }
     .footer-badge::before { content: '✦ '; }
 
     /* ── RESPONSIVE ── */
@@ -499,8 +558,8 @@
       .nav-links a { font-size: 0.75rem; }
       .form-card { padding: 32px 20px; }
       .form-grid { grid-template-columns: 1fr; }
+      .why-card { padding: 48px 28px; }
     }
-
     @media (max-width: 480px) {
       .nav-links li:not(:last-child) { display: none; }
     }
@@ -545,10 +604,27 @@
 
 <!-- MY STORY -->
 <section id="story">
+  <svg class="leaf-deco pos-tr" width="180" height="280" viewBox="0 0 270 420" xmlns="http://www.w3.org/2000/svg">
+    <path d="M245 0 C222 42 196 88 168 134 C140 180 112 224 88 266 C70 298 57 330 50 375" stroke="#2c4a2e" stroke-width="2.2" fill="none" opacity="0.45"/>
+    <line x1="238" y1="16" x2="255" y2="3" stroke="#2c4a2e" stroke-width="1.4" opacity="0.38"/>
+    <line x1="230" y1="28" x2="210" y2="16" stroke="#2c4a2e" stroke-width="1.4" opacity="0.38"/>
+    <ellipse cx="257" cy="1" rx="19" ry="8" fill="#4a7c59" opacity="0.44" transform="rotate(-52 257 1)"/>
+    <ellipse cx="208" cy="14" rx="18" ry="7.5" fill="#2c4a2e" opacity="0.38" transform="rotate(42 208 14)"/>
+    <line x1="216" y1="54" x2="234" y2="40" stroke="#2c4a2e" stroke-width="1.4" opacity="0.38"/>
+    <line x1="208" y1="67" x2="187" y2="54" stroke="#2c4a2e" stroke-width="1.4" opacity="0.38"/>
+    <ellipse cx="236" cy="38" rx="21" ry="8.5" fill="#4a7c59" opacity="0.42" transform="rotate(-46 236 38)"/>
+    <ellipse cx="185" cy="52" rx="19" ry="8" fill="#5a8f6a" opacity="0.38" transform="rotate(36 185 52)"/>
+    <line x1="190" y1="96" x2="208" y2="82" stroke="#2c4a2e" stroke-width="1.4" opacity="0.36"/>
+    <line x1="182" y1="110" x2="161" y2="96" stroke="#2c4a2e" stroke-width="1.4" opacity="0.36"/>
+    <ellipse cx="210" cy="80" rx="21" ry="8.5" fill="#4a7c59" opacity="0.40" transform="rotate(-40 210 80)"/>
+    <ellipse cx="159" cy="94" rx="18" ry="7.5" fill="#2c4a2e" opacity="0.34" transform="rotate(30 159 94)"/>
+  </svg>
   <div class="section-inner">
     <div class="story-layout reveal" data-delay="0">
-      <p class="section-label" style="text-align:left;">My Story</p>
-      <h2 class="section-title" style="text-align:left; margin-bottom: 28px;">I'm Isabella.</h2>
+      <div class="brush-heading-wrap">
+        <h2 class="brush-heading">My Story ♡</h2>
+      </div>
+      <p class="story-name">I'm Isabella.</p>
       <p class="story-body">I'm a single mom of 4, working full-time at the cancer center and doing everything I can to provide a stable, beautiful life for my babies.</p>
       <p class="story-body">I built New Roots Cleaning Co. from the ground up with hard work, late nights, and a whole lot of heart. This business is more than just cleaning—it's about creating a fresh start for my family and helping other busy moms find a little breath of relief.</p>
       <p class="story-callout">You take care of everything else.<br>I'll take care of the mess.</p>
@@ -556,15 +632,72 @@
   </div>
 </section>
 
+<!-- WHY I DO IT -->
+<section id="why">
+  <div class="section-inner">
+    <div class="why-card reveal" data-delay="0">
+      <div class="brush-heading-wrap" style="margin-bottom: 24px;">
+        <h2 class="brush-heading on-dark">Why I Do It ♡</h2>
+      </div>
+      <p class="why-body">Every clean home helps me give my 4 kids stability, security, and a future we can be proud of. Supporting my business means supporting a single mom who is working hard for a better tomorrow.</p>
+      <p class="why-thanks">Thank you from the bottom of my heart. ♡</p>
+    </div>
+  </div>
+</section>
+
 <!-- SERVICES -->
 <section id="services">
+  <svg class="leaf-deco pos-tl" width="200" height="300" viewBox="0 0 270 420" xmlns="http://www.w3.org/2000/svg">
+    <path d="M245 0 C222 42 196 88 168 134 C140 180 112 224 88 266 C70 298 57 330 50 375" stroke="#2c4a2e" stroke-width="2.2" fill="none" opacity="0.5"/>
+    <line x1="238" y1="16" x2="255" y2="3" stroke="#2c4a2e" stroke-width="1.4" opacity="0.42"/>
+    <line x1="230" y1="28" x2="210" y2="16" stroke="#2c4a2e" stroke-width="1.4" opacity="0.42"/>
+    <ellipse cx="257" cy="1" rx="19" ry="8" fill="#4a7c59" opacity="0.5" transform="rotate(-52 257 1)"/>
+    <ellipse cx="208" cy="14" rx="18" ry="7.5" fill="#2c4a2e" opacity="0.44" transform="rotate(42 208 14)"/>
+    <line x1="216" y1="54" x2="234" y2="40" stroke="#2c4a2e" stroke-width="1.4" opacity="0.42"/>
+    <line x1="208" y1="67" x2="187" y2="54" stroke="#2c4a2e" stroke-width="1.4" opacity="0.42"/>
+    <ellipse cx="236" cy="38" rx="21" ry="8.5" fill="#4a7c59" opacity="0.48" transform="rotate(-46 236 38)"/>
+    <ellipse cx="185" cy="52" rx="19" ry="8" fill="#5a8f6a" opacity="0.44" transform="rotate(36 185 52)"/>
+    <line x1="190" y1="96" x2="208" y2="82" stroke="#2c4a2e" stroke-width="1.4" opacity="0.4"/>
+    <line x1="182" y1="110" x2="161" y2="96" stroke="#2c4a2e" stroke-width="1.4" opacity="0.4"/>
+    <ellipse cx="210" cy="80" rx="21" ry="8.5" fill="#4a7c59" opacity="0.46" transform="rotate(-40 210 80)"/>
+    <ellipse cx="159" cy="94" rx="18" ry="7.5" fill="#2c4a2e" opacity="0.4" transform="rotate(30 159 94)"/>
+    <line x1="163" y1="140" x2="180" y2="126" stroke="#2c4a2e" stroke-width="1.4" opacity="0.36"/>
+    <line x1="155" y1="155" x2="134" y2="142" stroke="#2c4a2e" stroke-width="1.4" opacity="0.36"/>
+    <ellipse cx="182" cy="124" rx="20" ry="8" fill="#4a7c59" opacity="0.44" transform="rotate(-35 182 124)"/>
+    <ellipse cx="132" cy="140" rx="18" ry="7" fill="#5a8f6a" opacity="0.38" transform="rotate(25 132 140)"/>
+  </svg>
+  <svg class="leaf-deco pos-tr" width="200" height="300" viewBox="0 0 270 420" xmlns="http://www.w3.org/2000/svg">
+    <path d="M245 0 C222 42 196 88 168 134 C140 180 112 224 88 266 C70 298 57 330 50 375" stroke="#2c4a2e" stroke-width="2.2" fill="none" opacity="0.5"/>
+    <line x1="238" y1="16" x2="255" y2="3" stroke="#2c4a2e" stroke-width="1.4" opacity="0.42"/>
+    <line x1="230" y1="28" x2="210" y2="16" stroke="#2c4a2e" stroke-width="1.4" opacity="0.42"/>
+    <ellipse cx="257" cy="1" rx="19" ry="8" fill="#4a7c59" opacity="0.5" transform="rotate(-52 257 1)"/>
+    <ellipse cx="208" cy="14" rx="18" ry="7.5" fill="#2c4a2e" opacity="0.44" transform="rotate(42 208 14)"/>
+    <line x1="216" y1="54" x2="234" y2="40" stroke="#2c4a2e" stroke-width="1.4" opacity="0.42"/>
+    <line x1="208" y1="67" x2="187" y2="54" stroke="#2c4a2e" stroke-width="1.4" opacity="0.42"/>
+    <ellipse cx="236" cy="38" rx="21" ry="8.5" fill="#4a7c59" opacity="0.48" transform="rotate(-46 236 38)"/>
+    <ellipse cx="185" cy="52" rx="19" ry="8" fill="#5a8f6a" opacity="0.44" transform="rotate(36 185 52)"/>
+    <line x1="190" y1="96" x2="208" y2="82" stroke="#2c4a2e" stroke-width="1.4" opacity="0.4"/>
+    <line x1="182" y1="110" x2="161" y2="96" stroke="#2c4a2e" stroke-width="1.4" opacity="0.4"/>
+    <ellipse cx="210" cy="80" rx="21" ry="8.5" fill="#4a7c59" opacity="0.46" transform="rotate(-40 210 80)"/>
+    <ellipse cx="159" cy="94" rx="18" ry="7.5" fill="#2c4a2e" opacity="0.4" transform="rotate(30 159 94)"/>
+    <line x1="163" y1="140" x2="180" y2="126" stroke="#2c4a2e" stroke-width="1.4" opacity="0.36"/>
+    <line x1="155" y1="155" x2="134" y2="142" stroke="#2c4a2e" stroke-width="1.4" opacity="0.36"/>
+    <ellipse cx="182" cy="124" rx="20" ry="8" fill="#4a7c59" opacity="0.44" transform="rotate(-35 182 124)"/>
+    <ellipse cx="132" cy="140" rx="18" ry="7" fill="#5a8f6a" opacity="0.38" transform="rotate(25 132 140)"/>
+  </svg>
   <div class="section-inner">
     <p class="section-label">What I Offer</p>
     <h2 class="section-title">Services</h2>
-    <p class="section-sub">Starting at <strong data-content="sqft_rate">$.10</strong>/sq ft — every home gets a free custom quote.</p>
+
+    <div class="price-badge-wrap reveal" data-delay="0">
+      <div class="price-badge">
+        <p class="price-badge-label">Starting At</p>
+        <p class="price-badge-amount"><span data-content="sqft_rate">$.10</span></p>
+        <p class="price-badge-unit">Per Sq Ft</p>
+      </div>
+    </div>
 
     <div class="services-grid">
-      <!-- Standard -->
       <div class="service-card reveal" data-delay="0">
         <div class="service-icon">🏠</div>
         <p class="service-name">Standard Cleaning</p>
@@ -576,8 +709,7 @@
           <li>Vacuum + mop</li>
         </ul>
       </div>
-      <!-- Deep -->
-      <div class="service-card reveal" data-delay="120">
+      <div class="service-card reveal" data-delay="100">
         <div class="service-icon">✨</div>
         <p class="service-name">Deep Cleaning</p>
         <p class="service-tagline">For when your space needs a full reset</p>
@@ -588,8 +720,7 @@
           <li>Top-to-bottom clean</li>
         </ul>
       </div>
-      <!-- Move -->
-      <div class="service-card reveal" data-delay="240">
+      <div class="service-card reveal" data-delay="200">
         <div class="service-icon">📦</div>
         <p class="service-name">Move-In / Move-Out</p>
         <p class="service-tagline">Fresh start, done right</p>
@@ -600,8 +731,7 @@
           <li>Ready for move-in or listing</li>
         </ul>
       </div>
-      <!-- Apartment & Condo -->
-      <div class="service-card reveal" data-delay="360">
+      <div class="service-card reveal" data-delay="300">
         <div class="service-icon">🏢</div>
         <p class="service-name">Apartment &amp; Condo</p>
         <p class="service-tagline">Spotless for any living situation</p>
@@ -612,8 +742,7 @@
           <li>Move-in ready or regular</li>
         </ul>
       </div>
-      <!-- Office -->
-      <div class="service-card reveal" data-delay="480">
+      <div class="service-card reveal" data-delay="400">
         <div class="service-icon">💼</div>
         <p class="service-name">Office Cleaning</p>
         <p class="service-tagline">A clean workspace is a productive one</p>
@@ -626,64 +755,193 @@
       </div>
     </div>
 
+    <p class="services-mantra reveal" data-delay="0">Reliable. Detailed. Judgment-Free. ♡</p>
+
     <!-- Add-ons -->
     <div class="addons-box reveal" data-delay="0">
-      <p class="addons-title">Add-Ons ♡</p>
+      <p class="addons-title">Add-On Services ♡</p>
       <div class="addons-grid">
+
         <div class="addon-item">
-          <div class="addon-emoji">🧊</div>
+          <div class="addon-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="5" y="2" width="14" height="20" rx="2"/>
+              <line x1="5" y1="9" x2="19" y2="9"/>
+              <line x1="9" y1="5" x2="9" y2="7.5"/>
+              <line x1="9" y1="13" x2="9" y2="19"/>
+            </svg>
+          </div>
           <div class="addon-name">Inside Fridge</div>
           <div class="addon-price" data-content="addon_fridge">$25+</div>
         </div>
+
         <div class="addon-item">
-          <div class="addon-emoji">🔥</div>
+          <div class="addon-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="17" rx="2"/>
+              <rect x="6.5" y="11" width="11" height="7" rx="1"/>
+              <circle cx="8" cy="7.5" r="1.2" fill="white" stroke="none"/>
+              <circle cx="12" cy="7.5" r="1.2" fill="white" stroke="none"/>
+              <circle cx="16" cy="7.5" r="1.2" fill="white" stroke="none"/>
+            </svg>
+          </div>
           <div class="addon-name">Inside Oven</div>
           <div class="addon-price" data-content="addon_oven">$30+</div>
         </div>
+
         <div class="addon-item">
-          <div class="addon-emoji">🗄️</div>
+          <div class="addon-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="4" width="9" height="16" rx="1"/>
+              <rect x="13" y="4" width="9" height="16" rx="1"/>
+              <line x1="2" y1="12" x2="11" y2="12"/>
+              <line x1="13" y1="12" x2="22" y2="12"/>
+              <line x1="9" y1="11" x2="9" y2="13"/>
+              <line x1="15" y1="11" x2="15" y2="13"/>
+            </svg>
+          </div>
           <div class="addon-name">Inside Cabinets</div>
           <div class="addon-price" data-content="addon_cabinets">$20+ / area</div>
         </div>
+
         <div class="addon-item">
-          <div class="addon-emoji">🪟</div>
+          <div class="addon-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <line x1="12" y1="3" x2="12" y2="21"/>
+              <line x1="3" y1="12" x2="21" y2="12"/>
+            </svg>
+          </div>
           <div class="addon-name">Interior Windows</div>
           <div class="addon-price" data-content="addon_windows">$7+ / each</div>
         </div>
+
         <div class="addon-item">
-          <div class="addon-emoji">🔲</div>
+          <div class="addon-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round">
+              <rect x="2" y="3" width="20" height="2.5" rx="1" fill="white" stroke="white" stroke-width="0.5"/>
+              <line x1="3" y1="8" x2="21" y2="8"/>
+              <line x1="3" y1="12" x2="21" y2="12"/>
+              <line x1="3" y1="16" x2="21" y2="16"/>
+              <line x1="3" y1="20" x2="21" y2="20"/>
+              <line x1="12" y1="5.5" x2="12" y2="8"/>
+            </svg>
+          </div>
           <div class="addon-name">Blinds</div>
           <div class="addon-price" data-content="addon_blinds">$5+ / set</div>
         </div>
+
         <div class="addon-item">
-          <div class="addon-emoji">📐</div>
+          <div class="addon-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round">
+              <line x1="3" y1="4" x2="3" y2="17"/>
+              <polyline points="3,17 5.5,17 5.5,20 21,20"/>
+              <line x1="3" y1="22" x2="21" y2="22"/>
+            </svg>
+          </div>
           <div class="addon-name">Baseboards</div>
           <div class="addon-price" data-content="addon_baseboards">$15+ / area</div>
         </div>
+
         <div class="addon-item">
-          <div class="addon-emoji">🧺</div>
+          <div class="addon-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="18" rx="2"/>
+              <circle cx="12" cy="13" r="5"/>
+              <circle cx="7" cy="7" r="0.9" fill="white" stroke="none"/>
+              <circle cx="10.5" cy="7" r="0.9" fill="white" stroke="none"/>
+            </svg>
+          </div>
           <div class="addon-name">Laundry Room</div>
           <div class="addon-price" data-content="addon_laundry_room">$15+</div>
         </div>
+
         <div class="addon-item">
-          <div class="addon-emoji">🌿</div>
+          <div class="addon-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round">
+              <line x1="2" y1="9" x2="22" y2="9"/>
+              <line x1="2" y1="21" x2="22" y2="21"/>
+              <line x1="5" y1="9" x2="5" y2="21"/>
+              <line x1="10" y1="9" x2="10" y2="21"/>
+              <line x1="15" y1="9" x2="15" y2="21"/>
+              <line x1="20" y1="9" x2="20" y2="21"/>
+              <line x1="2" y1="5" x2="22" y2="5"/>
+              <line x1="2" y1="5" x2="2" y2="9"/>
+              <line x1="22" y1="5" x2="22" y2="9"/>
+            </svg>
+          </div>
           <div class="addon-name">Balcony / Patio</div>
           <div class="addon-price" data-content="addon_balcony">$15+</div>
         </div>
+
         <div class="addon-item">
-          <div class="addon-emoji">🧹</div>
+          <div class="addon-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="2" width="18" height="20" rx="1.5"/>
+              <circle cx="14" cy="10" r="3.5"/>
+              <line x1="11.5" y1="12.5" x2="7.5" y2="16.5" stroke-width="2"/>
+            </svg>
+          </div>
           <div class="addon-name">Wall Spot Cleaning</div>
           <div class="addon-price" data-content="addon_wall_spot">$15+ / area</div>
         </div>
+
         <div class="addon-item">
-          <div class="addon-emoji">🐾</div>
+          <div class="addon-icon">
+            <svg viewBox="0 0 24 24" fill="white" stroke="none">
+              <ellipse cx="12" cy="15.5" rx="4.5" ry="3.5"/>
+              <ellipse cx="7" cy="11.5" rx="2" ry="2.5"/>
+              <ellipse cx="17" cy="11.5" rx="2" ry="2.5"/>
+              <ellipse cx="9.5" cy="7.5" rx="1.8" ry="2.2"/>
+              <ellipse cx="14.5" cy="7.5" rx="1.8" ry="2.2"/>
+            </svg>
+          </div>
           <div class="addon-name">Pet Hair Removal</div>
           <div class="addon-price" data-content="addon_pet_hair">$15+</div>
         </div>
+
       </div>
       <p class="addons-more">Need something not listed? Just ask! ♡</p>
     </div>
   </div>
+  <svg class="leaf-deco pos-bl" width="180" height="260" viewBox="0 0 270 420" xmlns="http://www.w3.org/2000/svg">
+    <path d="M245 0 C222 42 196 88 168 134 C140 180 112 224 88 266 C70 298 57 330 50 375" stroke="#2c4a2e" stroke-width="2.2" fill="none" opacity="0.5"/>
+    <line x1="238" y1="16" x2="255" y2="3" stroke="#2c4a2e" stroke-width="1.4" opacity="0.42"/>
+    <line x1="230" y1="28" x2="210" y2="16" stroke="#2c4a2e" stroke-width="1.4" opacity="0.42"/>
+    <ellipse cx="257" cy="1" rx="19" ry="8" fill="#4a7c59" opacity="0.5" transform="rotate(-52 257 1)"/>
+    <ellipse cx="208" cy="14" rx="18" ry="7.5" fill="#2c4a2e" opacity="0.44" transform="rotate(42 208 14)"/>
+    <line x1="216" y1="54" x2="234" y2="40" stroke="#2c4a2e" stroke-width="1.4" opacity="0.42"/>
+    <line x1="208" y1="67" x2="187" y2="54" stroke="#2c4a2e" stroke-width="1.4" opacity="0.42"/>
+    <ellipse cx="236" cy="38" rx="21" ry="8.5" fill="#4a7c59" opacity="0.48" transform="rotate(-46 236 38)"/>
+    <ellipse cx="185" cy="52" rx="19" ry="8" fill="#5a8f6a" opacity="0.44" transform="rotate(36 185 52)"/>
+    <line x1="190" y1="96" x2="208" y2="82" stroke="#2c4a2e" stroke-width="1.4" opacity="0.4"/>
+    <line x1="182" y1="110" x2="161" y2="96" stroke="#2c4a2e" stroke-width="1.4" opacity="0.4"/>
+    <ellipse cx="210" cy="80" rx="21" ry="8.5" fill="#4a7c59" opacity="0.46" transform="rotate(-40 210 80)"/>
+    <ellipse cx="159" cy="94" rx="18" ry="7.5" fill="#2c4a2e" opacity="0.4" transform="rotate(30 159 94)"/>
+    <line x1="163" y1="140" x2="180" y2="126" stroke="#2c4a2e" stroke-width="1.4" opacity="0.36"/>
+    <line x1="155" y1="155" x2="134" y2="142" stroke="#2c4a2e" stroke-width="1.4" opacity="0.36"/>
+    <ellipse cx="182" cy="124" rx="20" ry="8" fill="#4a7c59" opacity="0.44" transform="rotate(-35 182 124)"/>
+    <ellipse cx="132" cy="140" rx="18" ry="7" fill="#5a8f6a" opacity="0.38" transform="rotate(25 132 140)"/>
+  </svg>
+  <svg class="leaf-deco pos-br" width="180" height="260" viewBox="0 0 270 420" xmlns="http://www.w3.org/2000/svg">
+    <path d="M245 0 C222 42 196 88 168 134 C140 180 112 224 88 266 C70 298 57 330 50 375" stroke="#2c4a2e" stroke-width="2.2" fill="none" opacity="0.5"/>
+    <line x1="238" y1="16" x2="255" y2="3" stroke="#2c4a2e" stroke-width="1.4" opacity="0.42"/>
+    <line x1="230" y1="28" x2="210" y2="16" stroke="#2c4a2e" stroke-width="1.4" opacity="0.42"/>
+    <ellipse cx="257" cy="1" rx="19" ry="8" fill="#4a7c59" opacity="0.5" transform="rotate(-52 257 1)"/>
+    <ellipse cx="208" cy="14" rx="18" ry="7.5" fill="#2c4a2e" opacity="0.44" transform="rotate(42 208 14)"/>
+    <line x1="216" y1="54" x2="234" y2="40" stroke="#2c4a2e" stroke-width="1.4" opacity="0.42"/>
+    <line x1="208" y1="67" x2="187" y2="54" stroke="#2c4a2e" stroke-width="1.4" opacity="0.42"/>
+    <ellipse cx="236" cy="38" rx="21" ry="8.5" fill="#4a7c59" opacity="0.48" transform="rotate(-46 236 38)"/>
+    <ellipse cx="185" cy="52" rx="19" ry="8" fill="#5a8f6a" opacity="0.44" transform="rotate(36 185 52)"/>
+    <line x1="190" y1="96" x2="208" y2="82" stroke="#2c4a2e" stroke-width="1.4" opacity="0.4"/>
+    <line x1="182" y1="110" x2="161" y2="96" stroke="#2c4a2e" stroke-width="1.4" opacity="0.4"/>
+    <ellipse cx="210" cy="80" rx="21" ry="8.5" fill="#4a7c59" opacity="0.46" transform="rotate(-40 210 80)"/>
+    <ellipse cx="159" cy="94" rx="18" ry="7.5" fill="#2c4a2e" opacity="0.4" transform="rotate(30 159 94)"/>
+    <line x1="163" y1="140" x2="180" y2="126" stroke="#2c4a2e" stroke-width="1.4" opacity="0.36"/>
+    <line x1="155" y1="155" x2="134" y2="142" stroke="#2c4a2e" stroke-width="1.4" opacity="0.36"/>
+    <ellipse cx="182" cy="124" rx="20" ry="8" fill="#4a7c59" opacity="0.44" transform="rotate(-35 182 124)"/>
+    <ellipse cx="132" cy="140" rx="18" ry="7" fill="#5a8f6a" opacity="0.38" transform="rotate(25 132 140)"/>
+  </svg>
 </section>
 
 <!-- VALUES -->
@@ -849,9 +1107,8 @@
 </footer>
 
 <script>
-  // Scroll reveal
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
+    entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.style.transitionDelay = (entry.target.dataset.delay || 0) + 'ms';
         entry.target.classList.add('visible');
@@ -859,14 +1116,12 @@
       }
     });
   }, { threshold: 0.12 });
-
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
   const AIRTABLE_TOKEN = '%%AIRTABLE_TOKEN%%';
   const AIRTABLE_BASE  = 'appwoPbE74KkHfOau';
   const AIRTABLE_TABLE = 'tblrAj3tdvUJOlgXY';
 
-  // Content loader — populates data-content elements from Airtable
   async function loadContent() {
     try {
       const res = await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE}/tbljULmT7z4PMGUNd`, {
@@ -896,7 +1151,6 @@
 
   document.getElementById('inquiryForm').addEventListener('submit', async function(e) {
     e.preventDefault();
-
     const btn = document.getElementById('submitBtn');
     const msg = document.getElementById('formMessage');
     btn.disabled = true;
@@ -904,42 +1158,30 @@
     msg.className = 'form-message';
     msg.style.display = '';
 
-    // collect add-ons
-    const addons = Array.from(document.querySelectorAll('input[name="addons"]:checked'))
-                        .map(cb => cb.value);
+    const addons = Array.from(document.querySelectorAll('input[name="addons"]:checked')).map(cb => cb.value);
 
     const fields = {
-      'Name':              document.getElementById('name').value.trim(),
-      'Phone':             document.getElementById('phone').value.trim(),
-      'Email':             document.getElementById('email').value.trim(),
-      'Service Type':      document.getElementById('service').value,
-      'Square Footage':    document.getElementById('sqft').value.trim(),
-      'Bedrooms':          document.getElementById('bedrooms').value || '',
-      'Preferred Date':    document.getElementById('date').value || '',
-      'Preferred Time':    document.getElementById('time').value || '',
-      'Add-ons':           addons,
-      'Notes':             document.getElementById('notes').value.trim(),
-      'Status':            'New',
+      'Name':           document.getElementById('name').value.trim(),
+      'Phone':          document.getElementById('phone').value.trim(),
+      'Email':          document.getElementById('email').value.trim(),
+      'Service Type':   document.getElementById('service').value,
+      'Square Footage': document.getElementById('sqft').value.trim(),
+      'Bedrooms':       document.getElementById('bedrooms').value || '',
+      'Preferred Date': document.getElementById('date').value || '',
+      'Preferred Time': document.getElementById('time').value || '',
+      'Add-ons':        addons,
+      'Notes':          document.getElementById('notes').value.trim(),
+      'Status':         'New',
     };
-
-    // remove empty strings so Airtable doesn't complain
-    Object.keys(fields).forEach(k => { if (fields[k] === '' || (Array.isArray(fields[k]) && fields[k].length === 0)) delete fields[k]; });
+    Object.keys(fields).forEach(k => { if (fields[k] === '' || (Array.isArray(fields[k]) && !fields[k].length)) delete fields[k]; });
 
     try {
       const res = await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE}/${AIRTABLE_TABLE}`, {
         method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${AIRTABLE_TOKEN}`,
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Authorization': `Bearer ${AIRTABLE_TOKEN}`, 'Content-Type': 'application/json' },
         body: JSON.stringify({ fields }),
       });
-
-      if (!res.ok) {
-        const err = await res.json();
-        throw new Error(err.error?.message || 'Submission failed');
-      }
-
+      if (!res.ok) { const err = await res.json(); throw new Error(err.error?.message || 'Submission failed'); }
       msg.textContent = 'Request submitted! You should hear back shortly. ♡';
       msg.className = 'form-message success';
       btn.textContent = 'Submitted';
