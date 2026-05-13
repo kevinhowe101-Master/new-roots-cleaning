@@ -194,8 +194,28 @@
       font-size: 0.97rem;
     }
 
+    /* ── STORY ── */
+    #story { background: var(--cream-dark); }
+    .story-layout { max-width: 680px; margin: 0 auto; }
+    .story-body {
+      font-size: 1rem;
+      color: var(--text-light);
+      margin-bottom: 18px;
+      line-height: 1.75;
+    }
+    .story-callout {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--green-dark);
+      border-left: 3px solid var(--green-light);
+      padding-left: 20px;
+      margin-top: 28px;
+      line-height: 1.7;
+    }
+
     /* ── SERVICES ── */
-    #services { background: var(--cream-dark); }
+    #services { background: var(--cream); }
     .services-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -203,7 +223,7 @@
       margin-bottom: 40px;
     }
     .service-card {
-      background: var(--cream);
+      background: var(--cream-dark);
       border: 1.5px solid var(--green-pale);
       border-radius: 4px;
       padding: 36px 28px;
@@ -224,13 +244,6 @@
       font-weight: 700;
       color: var(--green-dark);
       margin-bottom: 8px;
-    }
-    .service-price {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      color: var(--green-dark);
-      font-weight: 700;
-      margin-bottom: 6px;
     }
     .service-tagline {
       font-size: 0.88rem;
@@ -259,7 +272,7 @@
 
     /* add-ons */
     .addons-box {
-      background: var(--cream);
+      background: var(--cream-dark);
       border: 1.5px solid var(--green-pale);
       border-radius: 4px;
       padding: 32px;
@@ -320,32 +333,6 @@
       margin-bottom: 6px;
     }
     .value-desc { font-size: 0.88rem; color: var(--green-pale); }
-
-    /* ── PRODUCTS ── */
-    #products { background: var(--cream); }
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 24px;
-      max-width: 640px;
-      margin: 0 auto;
-    }
-    .product-card {
-      border: 1.5px solid var(--green-pale);
-      border-radius: 4px;
-      padding: 28px 24px;
-      text-align: center;
-    }
-    .product-icon { font-size: 2rem; margin-bottom: 10px; }
-    .product-name {
-      font-weight: 700;
-      font-size: 0.85rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--green-dark);
-      margin-bottom: 6px;
-    }
-    .product-desc { font-size: 0.88rem; color: var(--text-light); }
 
     /* ── INQUIRY FORM ── */
     #book { background: var(--cream-dark); }
@@ -466,24 +453,6 @@
       color: var(--green-light);
       margin-bottom: 28px;
     }
-    .footer-contact {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 12px;
-      margin-bottom: 28px;
-    }
-    .footer-contact a {
-      color: var(--green-pale);
-      text-decoration: none;
-      display: flex; align-items: center; justify-content: center;
-      width: 40px; height: 40px;
-      border: 1.5px solid rgba(255,255,255,0.2);
-      border-radius: 50%;
-      transition: color 0.2s, border-color 0.2s, background 0.2s;
-    }
-    .footer-contact a:hover { color: #fff; border-color: #fff; background: rgba(255,255,255,0.08); }
-    .footer-contact svg { width: 18px; height: 18px; fill: currentColor; }
     .footer-social { display: flex; justify-content: center; gap: 20px; margin-bottom: 28px; }
     .footer-social a {
       color: var(--green-pale);
@@ -551,7 +520,6 @@
 
 <!-- HERO -->
 <section id="hero">
-  <!-- decorative leaf SVGs -->
   <svg class="hero-leaf tl" viewBox="0 0 300 400" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M20 380 C20 200 180 20 280 10 C280 10 260 200 150 300 C90 350 20 380 20 380Z" fill="#2c4a2e"/>
     <path d="M20 380 C80 300 200 200 280 10" stroke="#2c4a2e" stroke-width="2"/>
@@ -564,30 +532,42 @@
   </svg>
 
   <div class="hero-inner">
-    <p class="hero-eyebrow">Two moms. One mission. ♡</p>
+    <p class="hero-eyebrow">new beginnings. stronger roots. ♡</p>
     <h1 class="hero-title">New Roots<br>Cleaning Co.</h1>
     <p class="hero-subtitle">Fresh Start &nbsp;·&nbsp; Real Clean &nbsp;·&nbsp; Done Right</p>
     <div class="hero-divider"></div>
-    <p class="hero-tagline">We know exactly what needs done.</p>
-    <p class="hero-body">We're not just cleaners—we're moms who understand real-life mess, busy schedules, and the need for a true reset.</p>
-    <p class="hero-bold">No judgment. Just results. ♡</p>
+    <p class="hero-tagline">Clean spaces. Less stress. More life.</p>
+    <p class="hero-body">I'm not just a cleaner—I'm a mom who understands real-life mess, busy schedules, and what it takes to create a true reset.</p>
+    <p class="hero-bold">You take care of everything else. I'll take care of the mess. ♡</p>
     <a href="#book" class="btn">Request a Quote</a>
+  </div>
+</section>
+
+<!-- MY STORY -->
+<section id="story">
+  <div class="section-inner">
+    <div class="story-layout reveal" data-delay="0">
+      <p class="section-label" style="text-align:left;">My Story</p>
+      <h2 class="section-title" style="text-align:left; margin-bottom: 28px;">I'm Isabella.</h2>
+      <p class="story-body">I'm a single mom of 4, working full-time at the cancer center and doing everything I can to provide a stable, beautiful life for my babies.</p>
+      <p class="story-body">I built New Roots Cleaning Co. from the ground up with hard work, late nights, and a whole lot of heart. This business is more than just cleaning—it's about creating a fresh start for my family and helping other busy moms find a little breath of relief.</p>
+      <p class="story-callout">You take care of everything else.<br>I'll take care of the mess.</p>
+    </div>
   </div>
 </section>
 
 <!-- SERVICES -->
 <section id="services">
   <div class="section-inner">
-    <p class="section-label">What We Offer</p>
-    <h2 class="section-title">Our Services</h2>
-    <p class="section-sub">Choose the clean that fits your home and your life.</p>
+    <p class="section-label">What I Offer</p>
+    <h2 class="section-title">Services</h2>
+    <p class="section-sub">Starting at <strong data-content="sqft_rate">$.10</strong>/sq ft — every home gets a free custom quote.</p>
 
     <div class="services-grid">
       <!-- Standard -->
       <div class="service-card reveal" data-delay="0">
         <div class="service-icon">🏠</div>
         <p class="service-name">Standard Cleaning</p>
-        <p class="service-price" data-content="standard_price">$120 – $160</p>
         <p class="service-tagline">Perfect for maintenance &amp; busy homes</p>
         <div class="service-divider"></div>
         <ul class="service-features">
@@ -600,7 +580,6 @@
       <div class="service-card reveal" data-delay="120">
         <div class="service-icon">✨</div>
         <p class="service-name">Deep Cleaning</p>
-        <p class="service-price" data-content="deep_price">$220 – $360</p>
         <p class="service-tagline">For when your space needs a full reset</p>
         <div class="service-divider"></div>
         <ul class="service-features">
@@ -613,13 +592,36 @@
       <div class="service-card reveal" data-delay="240">
         <div class="service-icon">📦</div>
         <p class="service-name">Move-In / Move-Out</p>
-        <p class="service-price" data-content="move_price">$275 – $425</p>
         <p class="service-tagline">Fresh start, done right</p>
         <div class="service-divider"></div>
         <ul class="service-features">
           <li>Empty home deep clean</li>
           <li>Cabinets, appliances, closets</li>
           <li>Ready for move-in or listing</li>
+        </ul>
+      </div>
+      <!-- Apartment & Condo -->
+      <div class="service-card reveal" data-delay="360">
+        <div class="service-icon">🏢</div>
+        <p class="service-name">Apartment &amp; Condo</p>
+        <p class="service-tagline">Spotless for any living situation</p>
+        <div class="service-divider"></div>
+        <ul class="service-features">
+          <li>All surfaces + appliances</li>
+          <li>Compact space specialists</li>
+          <li>Move-in ready or regular</li>
+        </ul>
+      </div>
+      <!-- Office -->
+      <div class="service-card reveal" data-delay="480">
+        <div class="service-icon">💼</div>
+        <p class="service-name">Office Cleaning</p>
+        <p class="service-tagline">A clean workspace is a productive one</p>
+        <div class="service-divider"></div>
+        <ul class="service-features">
+          <li>Desks, surfaces &amp; common areas</li>
+          <li>Restrooms + kitchen</li>
+          <li>Flexible scheduling</li>
         </ul>
       </div>
     </div>
@@ -631,30 +633,55 @@
         <div class="addon-item">
           <div class="addon-emoji">🧊</div>
           <div class="addon-name">Inside Fridge</div>
-          <div class="addon-price" data-content="addon_fridge">$25</div>
+          <div class="addon-price" data-content="addon_fridge">$25+</div>
         </div>
         <div class="addon-item">
           <div class="addon-emoji">🔥</div>
           <div class="addon-name">Inside Oven</div>
-          <div class="addon-price" data-content="addon_oven">$25</div>
+          <div class="addon-price" data-content="addon_oven">$30+</div>
         </div>
         <div class="addon-item">
-          <div class="addon-emoji">🧺</div>
-          <div class="addon-name">Laundry + Folding</div>
-          <div class="addon-price" data-content="addon_laundry">$20 / load</div>
-        </div>
-        <div class="addon-item">
-          <div class="addon-emoji">🗂️</div>
-          <div class="addon-name">Organization</div>
-          <div class="addon-price" data-content="addon_organization">$30 / hr</div>
+          <div class="addon-emoji">🗄️</div>
+          <div class="addon-name">Inside Cabinets</div>
+          <div class="addon-price" data-content="addon_cabinets">$20+ / area</div>
         </div>
         <div class="addon-item">
           <div class="addon-emoji">🪟</div>
           <div class="addon-name">Interior Windows</div>
-          <div class="addon-price" data-content="addon_windows">$5 / window</div>
+          <div class="addon-price" data-content="addon_windows">$7+ / each</div>
+        </div>
+        <div class="addon-item">
+          <div class="addon-emoji">🔲</div>
+          <div class="addon-name">Blinds</div>
+          <div class="addon-price" data-content="addon_blinds">$5+ / set</div>
+        </div>
+        <div class="addon-item">
+          <div class="addon-emoji">📐</div>
+          <div class="addon-name">Baseboards</div>
+          <div class="addon-price" data-content="addon_baseboards">$15+ / area</div>
+        </div>
+        <div class="addon-item">
+          <div class="addon-emoji">🧺</div>
+          <div class="addon-name">Laundry Room</div>
+          <div class="addon-price" data-content="addon_laundry_room">$15+</div>
+        </div>
+        <div class="addon-item">
+          <div class="addon-emoji">🌿</div>
+          <div class="addon-name">Balcony / Patio</div>
+          <div class="addon-price" data-content="addon_balcony">$15+</div>
+        </div>
+        <div class="addon-item">
+          <div class="addon-emoji">🧹</div>
+          <div class="addon-name">Wall Spot Cleaning</div>
+          <div class="addon-price" data-content="addon_wall_spot">$15+ / area</div>
+        </div>
+        <div class="addon-item">
+          <div class="addon-emoji">🐾</div>
+          <div class="addon-name">Pet Hair Removal</div>
+          <div class="addon-price" data-content="addon_pet_hair">$15+</div>
         </div>
       </div>
-      <p class="addons-more">+ More upon request! ♡</p>
+      <p class="addons-more">Need something not listed? Just ask! ♡</p>
     </div>
   </div>
 </section>
@@ -663,47 +690,27 @@
 <section id="values">
   <div class="section-inner">
     <p class="section-label">Why New Roots</p>
-    <h2 class="section-title" style="color:#fff; margin-bottom: 48px;">Supporting Two Hardworking Moms &amp; Our Families</h2>
+    <h2 class="section-title" style="color:#fff; margin-bottom: 48px;">Because a Clean Home Changes Everything</h2>
     <div class="values-grid">
       <div class="value-item reveal" data-delay="0">
         <div class="value-icon">♡</div>
-        <p class="value-name">We Clean Like It's Our Own Home</p>
-        <p class="value-desc">Every detail matters to us, because it matters to you.</p>
+        <p class="value-name">I Clean Like It's My Own Home</p>
+        <p class="value-desc">Every detail matters to me, because it matters to you.</p>
       </div>
       <div class="value-item reveal" data-delay="120">
         <div class="value-icon">🌿</div>
         <p class="value-name">Judgment-Free, Always</p>
-        <p class="value-desc">Real life is messy. We get it — no judgment, just results.</p>
+        <p class="value-desc">Real life is messy. I get it — no judgment, just results.</p>
       </div>
       <div class="value-item reveal" data-delay="240">
         <div class="value-icon">✦</div>
         <p class="value-name">Reliable &amp; Detail-Obsessed</p>
-        <p class="value-desc">We show up, we do the work, and we do it right.</p>
+        <p class="value-desc">I show up, I do the work, and I do it right.</p>
       </div>
       <div class="value-item reveal" data-delay="360">
         <div class="value-icon">📅</div>
         <p class="value-name">Flexible for Real Life</p>
-        <p class="value-desc">We work around your schedule, not the other way around.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CLEANING OPTIONS -->
-<section id="products">
-  <div class="section-inner">
-    <p class="section-label">Cleaning Options</p>
-    <h2 class="section-title">Choose What Fits Your Home</h2>
-    <div class="products-grid">
-      <div class="product-card">
-        <div class="product-icon">🧴</div>
-        <p class="product-name">Standard Products</p>
-        <p class="product-desc">Trusted, effective cleaning supplies that get the job done.</p>
-      </div>
-      <div class="product-card">
-        <div class="product-icon">🌱</div>
-        <p class="product-name">Organic / Low-Tox Options</p>
-        <p class="product-desc">Safer for kids, pets, and the environment — just ask!</p>
+        <p class="value-desc">I work around your schedule, not the other way around.</p>
       </div>
     </div>
   </div>
@@ -714,7 +721,7 @@
   <div class="section-inner">
     <p class="section-label">Get In Touch</p>
     <h2 class="section-title">Request a Quote</h2>
-    <p class="section-sub">Fill out the form and we'll be in touch within 24 hours with a custom quote.</p>
+    <p class="section-sub">Fill out the form and I'll be in touch within 24 hours with a custom quote.</p>
 
     <div class="form-card reveal" data-delay="0">
       <form id="inquiryForm">
@@ -741,8 +748,16 @@
               <option value="" disabled selected>Select a service…</option>
               <option>Standard Cleaning</option>
               <option>Deep Cleaning</option>
-              <option>Move-in / Move-out</option>
+              <option>Move-In / Move-Out</option>
+              <option>Apartment &amp; Condo Cleaning</option>
+              <option>Office Cleaning</option>
+              <option>Organization Help</option>
             </select>
+          </div>
+
+          <div class="form-group">
+            <label for="sqft">Approx. Square Footage</label>
+            <input type="text" id="sqft" name="sqft" placeholder="e.g. 1,200 sq ft" />
           </div>
 
           <div class="form-group">
@@ -755,15 +770,6 @@
               <option>3 bed</option>
               <option>4 bed</option>
               <option>5+ bed</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="products">Cleaning Products</label>
-            <select id="products-select" name="products">
-              <option value="" disabled selected>Select…</option>
-              <option>Standard Products</option>
-              <option>Organic / Low-tox</option>
             </select>
           </div>
 
@@ -785,17 +791,22 @@
           <div class="form-group full">
             <label>Add-Ons (select all that apply)</label>
             <div class="checkbox-group">
-              <label class="checkbox-item"><input type="checkbox" name="addons" value="Inside Fridge" /><span>Inside Fridge — $25</span></label>
-              <label class="checkbox-item"><input type="checkbox" name="addons" value="Inside Oven" /><span>Inside Oven — $25</span></label>
-              <label class="checkbox-item"><input type="checkbox" name="addons" value="Laundry + Folding" /><span>Laundry + Folding — $20/load</span></label>
-              <label class="checkbox-item"><input type="checkbox" name="addons" value="Organization" /><span>Organization — $30/hr</span></label>
-              <label class="checkbox-item"><input type="checkbox" name="addons" value="Interior Windows" /><span>Interior Windows — $5/window</span></label>
+              <label class="checkbox-item"><input type="checkbox" name="addons" value="Inside Fridge" /><span>Inside Fridge — $25+</span></label>
+              <label class="checkbox-item"><input type="checkbox" name="addons" value="Inside Oven" /><span>Inside Oven — $30+</span></label>
+              <label class="checkbox-item"><input type="checkbox" name="addons" value="Inside Cabinets" /><span>Inside Cabinets — $20+ per area</span></label>
+              <label class="checkbox-item"><input type="checkbox" name="addons" value="Interior Windows" /><span>Interior Windows — $7+ each</span></label>
+              <label class="checkbox-item"><input type="checkbox" name="addons" value="Blinds" /><span>Blinds — $5+ per set</span></label>
+              <label class="checkbox-item"><input type="checkbox" name="addons" value="Baseboards" /><span>Baseboards — $15+ per area</span></label>
+              <label class="checkbox-item"><input type="checkbox" name="addons" value="Laundry Room" /><span>Laundry Room — $15+</span></label>
+              <label class="checkbox-item"><input type="checkbox" name="addons" value="Balcony / Patio" /><span>Balcony / Patio — $15+</span></label>
+              <label class="checkbox-item"><input type="checkbox" name="addons" value="Wall Spot Cleaning" /><span>Wall Spot Cleaning — $15+ per area</span></label>
+              <label class="checkbox-item"><input type="checkbox" name="addons" value="Pet Hair Removal" /><span>Pet Hair Removal — $15+</span></label>
             </div>
           </div>
 
           <div class="form-group full">
             <label for="notes">Notes / Questions</label>
-            <textarea id="notes" name="notes" placeholder="Anything else we should know? Pets, special instructions, areas of concern…"></textarea>
+            <textarea id="notes" name="notes" placeholder="Anything else I should know? Pets, special instructions, areas of concern…"></textarea>
           </div>
 
         </div>
@@ -815,7 +826,7 @@
   <p class="footer-logo" data-content="contact_name">New Roots Cleaning Co.</p>
   <p class="footer-tagline">Let's get your home feeling like a fresh start. ♡</p>
   <div class="footer-social">
-    <a href="tel:6307460781" aria-label="Call us">
+    <a id="phone-link" data-content="contact_phone" href="tel:3312358984" aria-label="Call us">
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
     </a>
     <a id="footer-email-link" data-content="contact_email" href="mailto:izzyhowe101@gmail.com" aria-label="Email us">
@@ -873,6 +884,8 @@
           if (link) link.href = Value;
         } else if (Select === 'email') {
           el.href = `mailto:${Value}`;
+        } else if (Select === 'phone') {
+          el.href = `tel:${Value.replace(/\D/g, '')}`;
         } else {
           el.textContent = Value;
         }
@@ -900,8 +913,8 @@
       'Phone':             document.getElementById('phone').value.trim(),
       'Email':             document.getElementById('email').value.trim(),
       'Service Type':      document.getElementById('service').value,
+      'Square Footage':    document.getElementById('sqft').value.trim(),
       'Bedrooms':          document.getElementById('bedrooms').value || '',
-      'Cleaning Products': document.getElementById('products-select').value || '',
       'Preferred Date':    document.getElementById('date').value || '',
       'Preferred Time':    document.getElementById('time').value || '',
       'Add-ons':           addons,
@@ -910,7 +923,7 @@
     };
 
     // remove empty strings so Airtable doesn't complain
-    Object.keys(fields).forEach(k => { if (fields[k] === '') delete fields[k]; });
+    Object.keys(fields).forEach(k => { if (fields[k] === '' || (Array.isArray(fields[k]) && fields[k].length === 0)) delete fields[k]; });
 
     try {
       const res = await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE}/${AIRTABLE_TABLE}`, {
@@ -927,12 +940,12 @@
         throw new Error(err.error?.message || 'Submission failed');
       }
 
-      msg.textContent = 'Request submitted! You should hear back from us shortly. ♡';
+      msg.textContent = 'Request submitted! You should hear back shortly. ♡';
       msg.className = 'form-message success';
       btn.textContent = 'Submitted';
       e.target.reset();
     } catch (err) {
-      msg.textContent = `Something went wrong: ${err.message}. Please call or text us at 630-746-0781.`;
+      msg.textContent = `Something went wrong: ${err.message}. Please call or text at 331-235-8984.`;
       msg.className = 'form-message error';
     } finally {
       btn.disabled = false;
